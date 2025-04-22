@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* Custom styles below */
+:root {
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --secondary: #10b981;
+  --dark: #1f2937;
+  --light: #f9fafb;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
