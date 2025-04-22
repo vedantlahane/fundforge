@@ -1,55 +1,38 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import MainLayout from '../layouts/MailLayout';
+import MainLayout from '../layouts/MainLayout';
 import Button from '../components/common/Button';
-import ProjectList from '../features/projects/components/ProjectList';  
-
-// Mock data for demonstration
-const MOCK_PROJECTS = [
-  {
-    id: 1,
-    title: 'Decentralized Renewable Energy Grid',
-    description: 'Building a peer-to-peer energy trading platform that allows homeowners with solar panels to sell excess energy to neighbors.',
-    image: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80',
-    goal: 50,
-    raised: 32,
-    backers: 18,
-    daysLeft: 12
-  },
-  {
-    id: 2,
-    title: 'Community-Owned Vertical Farm',
-    description: 'Creating an urban vertical farm owned and operated by the community, providing fresh produce to local residents.',
-    image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-    goal: 75,
-    raised: 45,
-    backers: 32,
-    daysLeft: 20
-  },
-  {
-    id: 3,
-    title: 'Open Source Medical Devices',
-    description: 'Developing affordable, open-source medical devices for underserved communities around the world.',
-    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-    goal: 100,
-    raised: 68,
-    backers: 42,
-    daysLeft: 15
-  }
-];
+import ProjectList from '../features/projects/components/ProjectList';
+import { useWallet } from '../contexts/WalletContext';
+import { getAllProjects } from '../services/blockchain/thirdweb';
 
 export default function HomePage() {
+  const { signer } = useWallet();
   const [featuredProjects, setFeaturedProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
-    // Simulate API call to fetch projects
-    setTimeout(() => {
-      setFeaturedProjects(MOCK_PROJECTS);
-      setLoading(false);
-    }, 1000);
-  }, []);
-  
+    const fetchProjects = async () => {
+      if (!signer) return;
+      
+      try {
+        setLoading(true);
+        const allProjects = await getAllProjects(signer);
+        
+        // Get up to 3 projects for the featured section
+        // You might want to implement a more sophisticated selection logic
+        const featured = allProjects.slice(0, 3);
+        setFeaturedProjects(featured);
+      } catch (err) {
+        console.error("Error fetching projects:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchProjects();
+  }, [signer]);
+
   return (
     <MainLayout>
       {/* Hero Section */}
