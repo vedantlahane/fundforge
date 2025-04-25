@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MainLayout from '../layouts/MainLayout';
-import Button from '../components/common/Button';
 import { useWallet } from '../contexts/WalletContext';
-import { createProject } from '../services/blockchain/thirdweb';
-import LoadingSpinner from '../components/ui/LoadingSpinner';
+import { createProject } from '../services/blockchain';
 
 export default function CreateProjectPage() {
   const navigate = useNavigate();
-  const { account, signer } = useWallet();
+  const { account, isCorrectNetwork } = useWallet();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   
@@ -17,7 +15,6 @@ export default function CreateProjectPage() {
     description: '',
     goal: '',
     deadline: '',
-    image: '',
     milestones: [{ description: '', percentage: '25' }]
   });
 
@@ -68,6 +65,11 @@ export default function CreateProjectPage() {
       return;
     }
     
+    if (!isCorrectNetwork) {
+      setError('Please switch to Polygon Mumbai network');
+      return;
+    }
+    
     if (!validateMilestones()) {
       return;
     }
@@ -76,7 +78,13 @@ export default function CreateProjectPage() {
     setError(null);
     
     try {
-      await createProject(signer, form);
+      await createProject(
+        form.title,
+        form.description,
+        form.goal,
+        form.deadline,
+        form.milestones
+      );
       navigate('/explore');
     } catch (err) {
       console.error(err);
@@ -94,6 +102,10 @@ export default function CreateProjectPage() {
         {!account ? (
           <div className="bg-yellow-100 text-yellow-800 p-4 rounded-md mb-6">
             Please connect your wallet to create a project.
+          </div>
+        ) : !isCorrectNetwork ? (
+          <div className="bg-yellow-100 text-yellow-800 p-4 rounded-md mb-6">
+            Please switch to Polygon Mumbai network.
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -141,16 +153,6 @@ export default function CreateProjectPage() {
                 onChange={handleChange}
                 className="w-full border rounded p-2"
                 required
-              />
-            </div>
-            <div>
-              <label className="block mb-1 font-medium">Image URL</label>
-              <input
-                type="url"
-                name="image"
-                value={form.image}
-                onChange={handleChange}
-                className="w-full border rounded p-2"
               />
             </div>
             <div>
@@ -203,21 +205,23 @@ export default function CreateProjectPage() {
               </div>
             )}
             
-            <Button 
+            <button
               type="submit" 
-              fullWidth 
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
               disabled={isSubmitting}
-              className="flex items-center justify-center"
             >
               {isSubmitting ? (
-                <>
-                  <LoadingSpinner size="sm" color="white" className="mr-2" />
+                <div className="flex items-center justify-center">
+                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
                   Creating Project...
-                </>
+                </div>
               ) : (
                 'Create Project'
               )}
-            </Button>
+            </button>
           </form>
         )}
       </div>

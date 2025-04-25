@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import WalletConnect from '../../../features/wallet/components/WalletConnect';
+import WalletConnect from '../../contexts/WalletContext';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

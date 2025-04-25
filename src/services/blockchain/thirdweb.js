@@ -1,22 +1,23 @@
-import { ThirdwebSDK } from "@thirdweb-dev/sdk";
-import { Mumbai } from "@thirdweb-dev/chains";
+import { createThirdwebClient, getContract } from "thirdweb";
+import { polygonMumbai } from "thirdweb/chains";
+import { ethers } from "ethers";
 
-// Your contract address from Thirdweb deployment
 const CONTRACT_ADDRESS = "YOUR_CONTRACT_ADDRESS";
 
-// Initialize the SDK with the signer
-export const getSDK = (signer) => {
-  if (!signer) return null;
-  return ThirdwebSDK.fromSigner(signer, Mumbai);
+
+const client = createThirdwebClient({
+  clientId: "33e4e06c99b0b8aac3515e061452dcdd",
+});
+export const getCrowdfundingContract = async (signer) => {
+  return getContract({
+    client,
+    chain: polygonMumbai,
+    address: CONTRACT_ADDRESS,
+    wallet: signer
+  });
 };
 
-// Get the crowdfunding contract
-export const getCrowdfundingContract = async (signer) => {
-  const sdk = getSDK(signer);
-  if (!sdk) return null;
-  
-  return await sdk.getContract(CONTRACT_ADDRESS);
-};
+// Rest of your contract interaction functions remain the same
 
 // Create a new project
 export const createProject = async (signer, projectData) => {
