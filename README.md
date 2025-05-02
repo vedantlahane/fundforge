@@ -1,6 +1,6 @@
 # React + Vite
 
-- [](https://ifundforge.vercel.app) uses [deployed link]
+- [](https://ifundforge.vercel.app) uses [deployed link](ifundforge)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
