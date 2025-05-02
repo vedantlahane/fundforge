@@ -1,6 +1,6 @@
 # React + Vite
 
-- Fund Forge: [fund forge](https://vedantlahane.vercel.app)
+- Fund Forge: [fund forge](https://ifundforge.vercel.app)
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
