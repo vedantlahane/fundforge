@@ -1,4 +1,4 @@
-import React, { type JSX } from "react";
+import { type JSX } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -48,7 +48,7 @@ const mockUpdates: Update[] = [
   },
 ];
 
-export function ProjectUpdates({ projectId, updates = mockUpdates }: ProjectUpdatesProps): JSX.Element {
+export function ProjectUpdates({ updates = mockUpdates }: ProjectUpdatesProps): JSX.Element {
   return (
     <Card>
       <CardHeader>

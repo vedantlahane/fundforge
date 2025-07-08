@@ -1,4 +1,4 @@
-import React, { type JSX } from "react";
+import { type JSX } from "react";
 import { ProjectCard } from "@/components/project-card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";

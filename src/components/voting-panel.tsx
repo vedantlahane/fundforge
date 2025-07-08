@@ -1,4 +1,4 @@
-import React, { useState, type JSX } from "react";
+import  { useState, type JSX } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -8,19 +8,8 @@ import { Vote, ThumbsUp, ThumbsDown } from "lucide-react";
 import { useProject } from "@/hooks/use-project";
 import { useVoting } from "@/hooks/use-voting";
 
-interface ActiveVoting {
-  id: string;
-  title: string;
-  description: string;
-  timeLeft: number;
-  votesFor: number;
-  votesAgainst: number;
-}
 
-interface Project {
-  id: string;
-  activeVoting?: ActiveVoting;
-}
+
 
 interface VotingPanelProps {
   projectId: string;

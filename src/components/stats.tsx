@@ -1,4 +1,4 @@
-import React, { type JSX } from "react";
+import { type JSX } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { TrendingUp, Users, DollarSign, Zap, type LucideIcon } from "lucide-react";
 

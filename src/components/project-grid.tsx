@@ -1,4 +1,4 @@
-import React, { type JSX } from "react";
+import { type JSX } from "react";
 import { ProjectCard } from "@/components/project-card";
 import { useProjects } from "@/hooks/use-projects";
 
