@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 interface UseVotingReturn {
@@ -11,10 +11,10 @@ export function useVoting(): UseVotingReturn {
   const { success, error } = useToast();
 
   const vote = async (
-    projectId: string,
-    votingId: string,
+    _projectId: string,
+    _votingId: string,
     support: boolean,
-    comment?: string
+    _comment?: string
   ): Promise<void> => {
     setLoading(true);
     try {

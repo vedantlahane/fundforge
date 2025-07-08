@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 
@@ -28,7 +28,7 @@ export function useCreateProject(): UseCreateProjectReturn {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const createProject = async (projectData: ProjectData): Promise<void> => {
+  const createProject = async (_projectData: ProjectData): Promise<void> => {
     setLoading(true);
     try {
       // Simulate blockchain deployment

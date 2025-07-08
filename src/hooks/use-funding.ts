@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 interface UseFundingReturn {
@@ -10,7 +10,7 @@ export function useFunding(): UseFundingReturn {
   const [loading, setLoading] = useState<boolean>(false);
   const { success, error } = useToast();
 
-  const fundProject = async (projectId: string, amount: number): Promise<void> => {
+  const fundProject = async (_projectId: string, amount: number): Promise<void> => {
     setLoading(true);
     try {
       // Simulate blockchain transaction
