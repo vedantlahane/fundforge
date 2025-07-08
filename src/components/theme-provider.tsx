@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useEffect, useState, type JSX } from "react";
-
+import { createContext, useContext, useEffect, useState, type JSX } from "react";
 type Theme = "light" | "dark" | "system";
 
 interface ThemeProviderProps {
