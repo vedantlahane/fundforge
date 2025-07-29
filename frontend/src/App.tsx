@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { Web3Provider } from './contexts/Web3Context';
@@ -10,7 +9,7 @@ import CampaignDetails from './pages/CampaignDetails';
 import Dashboard from './pages/Dashboard';
 import Explore from './pages/Explore';
 import Profile from './pages/Profile';
-import './styles/global.css';
+import './index.css';
 
 function App() {
   return (

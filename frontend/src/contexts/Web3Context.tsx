@@ -1,6 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import Web3 from 'web3';
-import { Contract } from 'web3-eth-contract';
 import toast from 'react-hot-toast';
 
 // Import your contract ABIs
@@ -10,13 +9,13 @@ import CampaignABI from '../contracts/Campaign.json';
 interface Web3ContextType {
   web3: Web3 | null;
   account: string | null;
-  factoryContract: Contract | null;
+  factoryContract: any | null;
   isConnected: boolean;
   connectWallet: () => Promise<void>;
   disconnectWallet: () => void;
   loading: boolean;
   networkId: number | null;
-  createCampaignContract: (address: string) => Contract;
+  createCampaignContract: (address: string) => any;
 }
 
 const Web3Context = createContext<Web3ContextType | undefined>(undefined);
@@ -33,7 +32,7 @@ interface Web3ProviderProps {
 export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
   const [web3, setWeb3] = useState<Web3 | null>(null);
   const [account, setAccount] = useState<string | null>(null);
-  const [factoryContract, setFactoryContract] = useState<Contract | null>(null);
+  const [factoryContract, setFactoryContract] = useState<any | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [loading, setLoading] = useState(false);
   const [networkId, setNetworkId] = useState<number | null>(null);
@@ -91,7 +90,7 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
     toast.success('Wallet disconnected');
   };
 
-  const createCampaignContract = (address: string): Contract => {
+  const createCampaignContract = (address: string): any => {
     if (!web3) throw new Error('Web3 not connected');
     return new web3.eth.Contract(CampaignABI.abi, address);
   };
@@ -134,7 +133,7 @@ export const Web3Provider: React.FC<Web3ProviderProps> = ({ children }) => {
         }
       });
 
-      window.ethereum.on('chainChanged', (chainId: string) => {
+      window.ethereum.on('chainChanged', () => {
         window.location.reload(); // Refresh on network change
       });
     }
