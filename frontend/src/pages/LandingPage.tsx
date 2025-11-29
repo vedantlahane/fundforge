@@ -537,8 +537,11 @@ export function LandingPage() {
           </main>
         </motion.section>
 
+        {/* Spacer to allow scrolling past the fixed hero */}
+        <div className="h-screen pointer-events-none" />
+
         {/* Second viewport - Stats section */}
-        <section className="min-h-screen flex items-center justify-center relative z-20 pt-[100vh]">
+        <section className="min-h-screen flex items-center justify-center relative z-20">
           <div className="container mx-auto px-6 py-20">
             <motion.div
               initial={{ opacity: 0 }}
