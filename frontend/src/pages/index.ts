@@ -1,3 +1,4 @@
+export { LandingPage } from "./LandingPage"
 export { HomePage } from "./HomePage"
 export { ProjectsPage } from "./ProjectsPage"
 export { ProjectDetailPage } from "./ProjectDetailPage"
