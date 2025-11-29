@@ -1,20 +1,22 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import path from 'path'
 
+
+// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  define: {
-    global: 'globalThis',
-  },
+  plugins: [
+    react({
+      babel: {
+        plugins: [['babel-plugin-react-compiler']],
+      },
+    }),
+    tailwindcss(),
+  ],
   resolve: {
     alias: {
-      process: "process/browser",
-      stream: "stream-browserify",
-      util: 'util',
+      '@': path.resolve(__dirname, './src'),
     },
-  },
-  optimizeDeps: {
-    include: ['process', 'util'],
   },
 })
