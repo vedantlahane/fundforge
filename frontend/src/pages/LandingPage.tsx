@@ -335,7 +335,7 @@ export function LandingPage() {
         >
           {/* Header */}
           <motion.header 
-            className="container mx-auto px-6 py-8"
+            className="container mx-auto px-72 py-8"
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -355,19 +355,7 @@ export function LandingPage() {
               </div>
               
               <nav className="hidden md:flex items-center gap-8">
-                {["Features", "Projects", "Community"].map((item, i) => (
-                  <motion.a
-                    key={item}
-                    href="#"
-                    className="text-white/50 hover:text-white transition-colors relative group"
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 + i * 0.1 }}
-                  >
-                    {item}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-500 group-hover:w-full transition-all duration-300" />
-                  </motion.a>
-                ))}
+                
               </nav>
 
               <motion.div 
@@ -481,41 +469,7 @@ export function LandingPage() {
                 </motion.div>
               </motion.div>
 
-              {/* Feature cards */}
-              <motion.div 
-                className="mt-24 grid md:grid-cols-3 gap-6 max-w-4xl mx-auto"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.6 }}
-              >
-                {[
-                  { icon: Shield, title: "Trustless", desc: "Smart contract secured transactions", color: "from-indigo-600 to-indigo-500" },
-                  { icon: Users, title: "Community-Led", desc: "Democratic milestone governance", color: "from-indigo-500 to-indigo-400" },
-                  { icon: Lock, title: "Transparent", desc: "On-chain verifiable funding", color: "from-indigo-600 to-indigo-500" },
-                ].map((feature, idx) => (
-                  <Card3D key={idx}>
-                    <motion.div
-                      className="group relative p-8 rounded-3xl bg-white/[0.015] border border-white/[0.04] backdrop-blur-xl hover:bg-white/[0.025] hover:border-white/[0.08] transition-all duration-500 overflow-hidden"
-                      initial={{ opacity: 0, y: 40 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 1.6 + idx * 0.1 }}
-                      whileHover={{ y: -8 }}
-                    >
-                      {/* Glow effect */}
-                      <div className={`absolute inset-0 bg-gradient-to-br ${feature.color} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`} />
-                      
-                      <motion.div 
-                        className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-5 shadow-lg shadow-indigo-500/10`}
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                      >
-                        <feature.icon className="w-7 h-7 text-white" />
-                      </motion.div>
-                      <h3 className="font-heading text-xl font-semibold text-white mb-2">{feature.title}</h3>
-                      <p className="text-white/35 leading-relaxed">{feature.desc}</p>
-                    </motion.div>
-                  </Card3D>
-                ))}
-              </motion.div>
+              
 
               {/* Scroll indicator */}
               <motion.div 
