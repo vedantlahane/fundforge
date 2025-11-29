@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, User } from "lucide-react"
+import { User, Clock, Target } from "lucide-react"
 import { useProject } from "@/hooks/use-project"
 
 interface ProjectDetailsProps {
@@ -12,46 +12,74 @@ export function ProjectDetails({ projectId }: ProjectDetailsProps) {
 
   if (!project) return null
 
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "active":
+        return "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
+      case "funded":
+        return "bg-blue-500/10 text-blue-500 border-blue-500/20"
+      default:
+        return "bg-orange-500/10 text-orange-500 border-orange-500/20"
+    }
+  }
+
   return (
-    <div className="space-y-6">
-      <div className="relative h-64 md:h-80 rounded-lg overflow-hidden">
+    <div className="space-y-8">
+      {/* Hero Image */}
+      <div className="relative aspect-[21/9] rounded-2xl overflow-hidden group">
         <img
           src={project.image || "/placeholder.svg"}
           alt={project.title}
-          className="object-cover w-full h-full"
+          className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
         />
-        <Badge
-          className="absolute top-4 left-4"
-          variant={project.status === "active" ? "default" : project.status === "funded" ? "secondary" : "destructive"}
-        >
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <Badge className={`absolute top-4 left-4 ${getStatusColor(project.status)} border`}>
           {project.status}
         </Badge>
       </div>
 
+      {/* Title & Meta */}
       <div>
-        <div className="flex items-center justify-between mb-4">
-          <h1 className="text-3xl font-bold">{project.title}</h1>
-          <Badge variant="outline">{project.category}</Badge>
+        <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+          <h1 className="text-3xl md:text-4xl font-heading font-bold tracking-tight">
+            {project.title}
+          </h1>
+          <Badge variant="outline" className="text-sm px-3 py-1">
+            {project.category}
+          </Badge>
         </div>
 
-        <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
+        <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
-            <User className="w-4 h-4" />
-            <span>Created by {project.creator}</span>
+            <div className="p-1.5 rounded-full bg-muted">
+              <User className="w-3.5 h-3.5" />
+            </div>
+            <span>by <span className="text-foreground font-medium">{project.creator}</span></span>
           </div>
           <div className="flex items-center gap-2">
-            <Calendar className="w-4 h-4" />
-            <span>{project.daysLeft} days remaining</span>
+            <div className="p-1.5 rounded-full bg-muted">
+              <Clock className="w-3.5 h-3.5" />
+            </div>
+            <span><span className="text-foreground font-medium">{project.daysLeft}</span> days remaining</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="p-1.5 rounded-full bg-muted">
+              <Target className="w-3.5 h-3.5" />
+            </div>
+            <span><span className="text-foreground font-medium">{project.targetFunding} ETH</span> goal</span>
           </div>
         </div>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>About This Project</CardTitle>
+      {/* About */}
+      <Card className="border-border/50">
+        <CardHeader className="pb-4">
+          <CardTitle className="text-xl font-heading">About This Project</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-muted-foreground leading-relaxed">{project.description}</p>
+          <p className="text-muted-foreground leading-relaxed text-[15px]">
+            {project.description}
+          </p>
         </CardContent>
       </Card>
     </div>

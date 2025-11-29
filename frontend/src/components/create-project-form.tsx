@@ -6,8 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Separator } from "@/components/ui/separator"
-import { Plus, Trash2, Upload, Info } from "lucide-react"
+import { Plus, Trash2, Upload, Info, FileText, Target, Flag } from "lucide-react"
 import { useCreateProject } from "@/hooks/use-create-project"
 
 interface Milestone {
@@ -78,13 +77,18 @@ export function CreateProjectForm() {
   const totalMilestoneFunding = milestones.reduce((sum, m) => sum + (Number.parseFloat(m.fundingRequired) || 0), 0)
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
-      <Card>
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Project Details Card */}
+      <Card className="border-border/50 overflow-hidden">
+        <div className="h-1 bg-gradient-to-r from-indigo-500 to-purple-500" />
         <CardHeader>
-          <CardTitle>Project Details</CardTitle>
+          <CardTitle className="flex items-center gap-2 font-heading">
+            <FileText className="w-5 h-5 text-indigo-500" />
+            Project Details
+          </CardTitle>
           <CardDescription>Provide basic information about your project</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-5">
           <div className="space-y-2">
             <Label htmlFor="title">Project Title</Label>
             <Input
@@ -92,6 +96,7 @@ export function CreateProjectForm() {
               placeholder="Enter your project title"
               value={formData.title}
               onChange={(e) => handleInputChange("title", e.target.value)}
+              className="h-11"
               required
             />
           </div>
@@ -135,8 +140,9 @@ export function CreateProjectForm() {
                   placeholder="https://example.com/image.png"
                   value={formData.image}
                   onChange={(e) => handleInputChange("image", e.target.value)}
+                  className="h-11"
                 />
-                <Button type="button" variant="outline" size="icon">
+                <Button type="button" variant="outline" size="icon" className="h-11 w-11 shrink-0">
                   <Upload className="w-4 h-4" />
                 </Button>
               </div>
@@ -145,12 +151,17 @@ export function CreateProjectForm() {
         </CardContent>
       </Card>
 
-      <Card>
+      {/* Funding Details Card */}
+      <Card className="border-border/50 overflow-hidden">
+        <div className="h-1 bg-gradient-to-r from-emerald-500 to-teal-500" />
         <CardHeader>
-          <CardTitle>Funding Details</CardTitle>
+          <CardTitle className="flex items-center gap-2 font-heading">
+            <Target className="w-5 h-5 text-emerald-500" />
+            Funding Details
+          </CardTitle>
           <CardDescription>Set your funding goal and campaign duration</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-5">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <Label htmlFor="targetFunding">Funding Goal (ETH)</Label>
@@ -184,14 +195,14 @@ export function CreateProjectForm() {
           </div>
 
           {formData.targetFunding && totalMilestoneFunding > 0 && (
-            <div className="p-4 bg-muted rounded-lg flex items-start gap-3">
-              <Info className="w-5 h-5 text-muted-foreground mt-0.5" />
+            <div className="p-4 bg-muted/50 rounded-lg border border-border/50 flex items-start gap-3">
+              <Info className="w-5 h-5 text-indigo-500 mt-0.5" />
               <div className="text-sm">
                 <p className="font-medium">Milestone Funding Summary</p>
                 <p className="text-muted-foreground">
-                  Total milestone funding: {totalMilestoneFunding} ETH / {formData.targetFunding} ETH goal
+                  Total milestone funding: <span className="text-foreground font-medium">{totalMilestoneFunding} ETH</span> / {formData.targetFunding} ETH goal
                   {totalMilestoneFunding !== Number.parseFloat(formData.targetFunding) && (
-                    <span className="text-yellow-500 ml-2">(should match your funding goal)</span>
+                    <span className="text-amber-500 ml-2">(should match your funding goal)</span>
                   )}
                 </p>
               </div>
@@ -200,17 +211,26 @@ export function CreateProjectForm() {
         </CardContent>
       </Card>
 
-      <Card>
+      {/* Milestones Card */}
+      <Card className="border-border/50 overflow-hidden">
+        <div className="h-1 bg-gradient-to-r from-amber-500 to-orange-500" />
         <CardHeader>
-          <CardTitle>Milestones</CardTitle>
+          <CardTitle className="flex items-center gap-2 font-heading">
+            <Flag className="w-5 h-5 text-amber-500" />
+            Milestones
+          </CardTitle>
           <CardDescription>Define project milestones for fund release</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           {milestones.map((milestone, index) => (
-            <div key={index} className="space-y-4">
-              {index > 0 && <Separator />}
+            <div key={index} className="space-y-4 p-4 rounded-lg bg-muted/30 border border-border/50">
               <div className="flex items-center justify-between">
-                <h4 className="font-semibold">Milestone {index + 1}</h4>
+                <h4 className="font-semibold flex items-center gap-2">
+                  <span className="w-6 h-6 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs flex items-center justify-center">
+                    {index + 1}
+                  </span>
+                  Milestone {index + 1}
+                </h4>
                 {milestones.length > 1 && (
                   <Button type="button" variant="ghost" size="sm" onClick={() => removeMilestone(index)}>
                     <Trash2 className="w-4 h-4" />
@@ -266,18 +286,23 @@ export function CreateProjectForm() {
             </div>
           ))}
 
-          <Button type="button" variant="outline" onClick={addMilestone} className="w-full">
+          <Button type="button" variant="outline" onClick={addMilestone} className="w-full h-11 border-dashed">
             <Plus className="w-4 h-4 mr-2" />
-            Add Milestone
+            Add Another Milestone
           </Button>
         </CardContent>
       </Card>
 
-      <div className="flex justify-end gap-4">
-        <Button type="button" variant="outline" onClick={() => navigate("/projects")}>
+      {/* Submit Buttons */}
+      <div className="flex justify-end gap-3 pt-4">
+        <Button type="button" variant="outline" onClick={() => navigate("/projects")} className="h-11 px-6">
           Cancel
         </Button>
-        <Button type="submit" disabled={loading}>
+        <Button 
+          type="submit" 
+          disabled={loading}
+          className="h-11 px-8 bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600"
+        >
           {loading ? "Creating..." : "Create Project"}
         </Button>
       </div>
