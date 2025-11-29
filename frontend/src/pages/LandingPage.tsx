@@ -32,7 +32,7 @@ function CustomCursor() {
 // Floating particles
 function ParticleField() {
   return (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {[...Array(50)].map((_, i) => (
         <motion.div
           key={i}
@@ -278,7 +278,7 @@ export function LandingPage() {
 
       <div ref={containerRef} className="min-h-[200vh] bg-black overflow-hidden">
         {/* Fixed background */}
-        <div className="fixed inset-0">
+        <div className="fixed inset-0 pointer-events-none">
           {/* Dynamic gradient that follows mouse */}
           <div 
             className="absolute inset-0 transition-opacity duration-500"
