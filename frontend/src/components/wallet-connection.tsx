@@ -44,7 +44,7 @@ export function WalletConnection() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" className="gap-2 h-9 px-3">
-            <div className="w-2 h-2 rounded-full bg-emerald-500" />
+            <div className="w-2 h-2 rounded-full bg-indigo-500" />
             <span className="font-mono text-sm">{formatAddress(address!)}</span>
             <ChevronDown className="w-3.5 h-3.5 text-muted-foreground" />
           </Button>
@@ -69,7 +69,7 @@ export function WalletConnection() {
           <DropdownMenuSeparator />
 
           <DropdownMenuItem onClick={copyAddress} className="gap-2">
-            {copied ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}
+            {copied ? <Check className="w-4 h-4 text-indigo-500" /> : <Copy className="w-4 h-4" />}
             {copied ? "Copied!" : "Copy Address"}
           </DropdownMenuItem>
 

@@ -11,19 +11,19 @@ const steps = [
     icon: Users,
     title: "Fund",
     description: "Community discovers and backs projects they believe in",
-    color: "bg-purple-500",
+    color: "bg-indigo-600",
   },
   {
     icon: Vote,
     title: "Vote",
     description: "Backers vote on milestone completion for accountability",
-    color: "bg-pink-500",
+    color: "bg-purple-500",
   },
   {
     icon: Coins,
     title: "Release",
     description: "Smart contracts release funds when milestones are approved",
-    color: "bg-emerald-500",
+    color: "bg-purple-600",
   },
 ]
 
@@ -44,7 +44,7 @@ export function HowItWorks() {
         {/* Steps */}
         <div className="relative max-w-5xl mx-auto">
           {/* Connection line - desktop */}
-          <div className="hidden lg:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-emerald-500 opacity-20" />
+          <div className="hidden lg:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 opacity-20" />
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
             {steps.map((step, index) => (

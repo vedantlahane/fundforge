@@ -9,9 +9,9 @@ interface Network {
 }
 
 const networks: Network[] = [
-  { id: "ethereum", name: "Ethereum Mainnet", shortName: "ETH", chainId: 1, color: "bg-blue-500" },
+  { id: "ethereum", name: "Ethereum Mainnet", shortName: "ETH", chainId: 1, color: "bg-indigo-500" },
   { id: "polygon", name: "Polygon", shortName: "MATIC", chainId: 137, color: "bg-purple-500" },
-  { id: "bsc", name: "BNB Chain", shortName: "BNB", chainId: 56, color: "bg-yellow-500" },
+  { id: "bsc", name: "BNB Chain", shortName: "BNB", chainId: 56, color: "bg-purple-600" },
 ]
 
 interface NetworkSelectorProps {

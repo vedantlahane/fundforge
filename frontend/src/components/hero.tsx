@@ -25,7 +25,7 @@ export function Hero() {
           {/* Headline */}
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
             Crowdfunding,{" "}
-            <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
               Reimagined
             </span>
           </h1>
@@ -54,8 +54,8 @@ export function Hero() {
           {/* Features */}
           <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
             <div className="group p-6 rounded-2xl bg-card border border-border/50 hover:border-indigo-500/30 hover:shadow-lg hover:shadow-indigo-500/5 transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
-                <Shield className="w-6 h-6 text-emerald-500" />
+              <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
+                <Shield className="w-6 h-6 text-indigo-500" />
               </div>
               <h3 className="font-heading font-semibold mb-2">Trustless</h3>
               <p className="text-sm text-muted-foreground">
@@ -74,8 +74,8 @@ export function Hero() {
             </div>
 
             <div className="group p-6 rounded-2xl bg-card border border-border/50 hover:border-indigo-500/30 hover:shadow-lg hover:shadow-indigo-500/5 transition-all duration-300">
-              <div className="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
-                <Zap className="w-6 h-6 text-orange-500" />
+              <div className="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
+                <Zap className="w-6 h-6 text-violet-500" />
               </div>
               <h3 className="font-heading font-semibold mb-2">Multi-Chain</h3>
               <p className="text-sm text-muted-foreground">

@@ -52,7 +52,7 @@ export function Stats() {
                 <span className="text-3xl lg:text-4xl font-heading font-bold tracking-tight">{stat.value}</span>
                 {stat.unit && <span className="text-lg text-muted-foreground">{stat.unit}</span>}
               </div>
-              <div className={`text-sm mt-1 ${stat.positive ? 'text-emerald-500' : 'text-red-500'}`}>
+              <div className={`text-sm mt-1 ${stat.positive ? 'text-indigo-500' : 'text-red-500'}`}>
                 {stat.change} this month
               </div>
             </div>

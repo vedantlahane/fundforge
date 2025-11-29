@@ -126,15 +126,15 @@ export function FundingPanel({ projectId }: FundingPanelProps) {
 
           <div className="text-xs text-muted-foreground space-y-1.5 pt-2">
             <p className="flex items-center gap-2">
-              <span className="w-1 h-1 rounded-full bg-emerald-500" />
+              <span className="w-1 h-1 rounded-full bg-indigo-500" />
               Funds are held in smart contract
             </p>
             <p className="flex items-center gap-2">
-              <span className="w-1 h-1 rounded-full bg-emerald-500" />
+              <span className="w-1 h-1 rounded-full bg-indigo-500" />
               Released based on milestone completion
             </p>
             <p className="flex items-center gap-2">
-              <span className="w-1 h-1 rounded-full bg-emerald-500" />
+              <span className="w-1 h-1 rounded-full bg-indigo-500" />
               Community voting determines releases
             </p>
           </div>
@@ -165,7 +165,7 @@ export function FundingPanel({ projectId }: FundingPanelProps) {
       <Card className="border-border/50">
         <CardHeader className="pb-3">
           <CardTitle className="text-base font-heading flex items-center gap-2">
-            <Zap className="w-4 h-4 text-amber-500" />
+            <Zap className="w-4 h-4 text-purple-500" />
             Reward Tokens
           </CardTitle>
         </CardHeader>
@@ -181,7 +181,7 @@ export function FundingPanel({ projectId }: FundingPanelProps) {
                   <span className="text-sm font-medium">{reward.tier}</span>
                   <span className="text-xs text-muted-foreground ml-2">({reward.threshold})</span>
                 </div>
-                <Badge variant="secondary" className="bg-amber-500/10 text-amber-600 dark:text-amber-400 border-0">
+                <Badge variant="secondary" className="bg-purple-500/10 text-purple-600 dark:text-purple-400 border-0">
                   {reward.tokens}
                 </Badge>
               </div>

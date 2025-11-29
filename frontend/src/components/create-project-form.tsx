@@ -153,10 +153,10 @@ export function CreateProjectForm() {
 
       {/* Funding Details Card */}
       <Card className="border-border/50 overflow-hidden">
-        <div className="h-1 bg-gradient-to-r from-emerald-500 to-teal-500" />
+        <div className="h-1 bg-gradient-to-r from-indigo-500 to-purple-500" />
         <CardHeader>
           <CardTitle className="flex items-center gap-2 font-heading">
-            <Target className="w-5 h-5 text-emerald-500" />
+            <Target className="w-5 h-5 text-indigo-500" />
             Funding Details
           </CardTitle>
           <CardDescription>Set your funding goal and campaign duration</CardDescription>
@@ -202,7 +202,7 @@ export function CreateProjectForm() {
                 <p className="text-muted-foreground">
                   Total milestone funding: <span className="text-foreground font-medium">{totalMilestoneFunding} ETH</span> / {formData.targetFunding} ETH goal
                   {totalMilestoneFunding !== Number.parseFloat(formData.targetFunding) && (
-                    <span className="text-amber-500 ml-2">(should match your funding goal)</span>
+                    <span className="text-purple-500 ml-2">(should match your funding goal)</span>
                   )}
                 </p>
               </div>
@@ -213,10 +213,10 @@ export function CreateProjectForm() {
 
       {/* Milestones Card */}
       <Card className="border-border/50 overflow-hidden">
-        <div className="h-1 bg-gradient-to-r from-amber-500 to-orange-500" />
+        <div className="h-1 bg-gradient-to-r from-indigo-500 to-purple-500" />
         <CardHeader>
           <CardTitle className="flex items-center gap-2 font-heading">
-            <Flag className="w-5 h-5 text-amber-500" />
+            <Flag className="w-5 h-5 text-purple-500" />
             Milestones
           </CardTitle>
           <CardDescription>Define project milestones for fund release</CardDescription>
@@ -226,7 +226,7 @@ export function CreateProjectForm() {
             <div key={index} className="space-y-4 p-4 rounded-lg bg-muted/30 border border-border/50">
               <div className="flex items-center justify-between">
                 <h4 className="font-semibold flex items-center gap-2">
-                  <span className="w-6 h-6 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs flex items-center justify-center">
+                  <span className="w-6 h-6 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-xs flex items-center justify-center">
                     {index + 1}
                   </span>
                   Milestone {index + 1}
