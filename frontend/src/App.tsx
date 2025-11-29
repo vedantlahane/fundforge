@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navigation } from "@/components/navigation"
+import { Footer } from "@/components/footer"
 import { Toaster } from "@/components/ui/toaster"
 import {
   HomePage,
@@ -14,9 +15,9 @@ function App() {
   return (
     <BrowserRouter>
       <ThemeProvider defaultTheme="system" storageKey="fundforge-theme">
-        <div className="min-h-screen bg-background font-sans antialiased">
+        <div className="min-h-screen bg-background flex flex-col">
           <Navigation />
-          <main>
+          <main className="flex-1">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/projects" element={<ProjectsPage />} />
@@ -25,6 +26,7 @@ function App() {
               <Route path="/dashboard" element={<DashboardPage />} />
             </Routes>
           </main>
+          <Footer />
           <Toaster />
         </div>
       </ThemeProvider>
